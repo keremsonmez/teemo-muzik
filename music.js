@@ -72,7 +72,7 @@ const commands = {
 			voiceChannel.leave()
 		
 	},
-	'add': async (msg) => {
+	'ekle': async (msg) => {
 		const args = msg.content.split(' ');
 		const searchString = args.slice(1).join(' ');
 		const url2 = args[1].replace(/<.+>/g, '1');
