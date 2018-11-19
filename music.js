@@ -11,7 +11,7 @@ const youtube = new YouTube(ayarlar.api);
 let queue = {};
 
 const commands = {
-	'play': (msg) => {
+	'oynat': (msg) => {
 		if (queue[msg.guild.id] === undefined) return msg.channel.sendMessage(`${ayarlar.prefix}add <url> ile birkaç müzik ekle`);
 		if (!msg.guild.voiceConnection) return commands.join(msg).then(() => commands.play(msg));
 		if (queue[msg.guild.id].playing) return msg.channel.sendMessage('Zaten Çalınan var');
@@ -99,7 +99,7 @@ const commands = {
 			msg.channel.sendMessage(`sıraya **${info.title}** eklendi`);
 		});
 	},
-	'queue': (msg) => {
+	'liste': (msg) => {
 		if (queue[msg.guild.id] === undefined) return msg.channel.sendMessage(`Sıraya ilk önce bazı şarkıları ekle : ${ayarlar.prefix}add`);
 		let tosend = [];
 		queue[msg.guild.id].songs.forEach((song, i) => { tosend.push(`${i+1}. ${song.title} - Talep eden: ${song.requester}`);});
