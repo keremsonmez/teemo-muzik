@@ -29,17 +29,17 @@ const commands = {
 			dispatcher = msg.guild.voiceConnection.playStream(yt(song.url, { audioonly: true }), { passes : ayarlar.passes });
 			let collector = msg.channel.createCollector(m => m);
 			collector.on('message', m => {
-				if (m.content.startsWith(ayarlar.prefix + 'pause')) {
+				if (m.content.startsWith(ayarlar.prefix + 'durdur')) {
 					msg.channel.sendMessage('**durduruldu**').then(() => {dispatcher.pause();});
-				} else if (m.content.startsWith(ayarlar.prefix + 'resume')){
+				} else if (m.content.startsWith(ayarlar.prefix + 'devam')){
 					msg.channel.sendMessage('**devam ediyor**').then(() => {dispatcher.resume();});
-				} else if (m.content.startsWith(ayarlar.prefix + 'skip')){
+				} else if (m.content.startsWith(ayarlar.prefix + 'geç')){
 					msg.channel.sendMessage('**geçildi**').then(() => {dispatcher.end();});
-				} else if (m.content.startsWith('volume+')){
+				} else if (m.content.startsWith('ses+')){
 					if (Math.round(dispatcher.volume*50) >= 100) return msg.channel.sendMessage(`Şiddet: ${Math.round(dispatcher.volume*50)}%`);
 					dispatcher.setVolume(Math.min((dispatcher.volume*50 + (2*(m.content.split('+').length-1)))/50,2));
 					msg.channel.sendMessage(`Şiddet: ${Math.round(dispatcher.volume*50)}%`);
-				} else if (m.content.startsWith('volume-')){
+				} else if (m.content.startsWith('ses-')){
 					if (Math.round(dispatcher.volume*50) <= 0) return msg.channel.sendMessage(`Şiddet: ${Math.round(dispatcher.volume*50)}%`);
 					dispatcher.setVolume(Math.max((dispatcher.volume*50 - (2*(m.content.split('-').length-1)))/50,0));
 					msg.channel.sendMessage(`Şiddet: ${Math.round(dispatcher.volume*50)}%`);
