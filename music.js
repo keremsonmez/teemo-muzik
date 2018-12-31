@@ -12,14 +12,14 @@ let queue = {};
 
 const commands = {
 	'oynat': (msg) => {
-		if (queue[msg.guild.id] === undefined) return msg.channel.sendMessage(`${ayarlar.prefix}add <url> ile birkaç müzik ekle`);
-		if (!msg.guild.voiceConnection) return commands.join(msg).then(() => commands.play(msg));
+		if (queue[msg.guild.id] === undefined) return msg.channel.sendMessage(`${ayarlar.prefix}ekle <url> ile birkaç müzik ekle`);
+		if (!msg.guild.voiceConnection) return commands.join(msg).then(() => commands.oynat(msg));
 		if (queue[msg.guild.id].playing) return msg.channel.sendMessage('Zaten Çalınan var');
 		let dispatcher;
 		queue[msg.guild.id].playing = true;
 
 		console.log(queue);
-		(function play(song) {
+		(function oynat(song) {
 			console.log(song);
 			if (song === undefined) return msg.channel.sendMessage('Sıra boş').then(() => {
 				queue[msg.guild.id].playing = false;
