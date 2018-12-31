@@ -49,7 +49,7 @@ const commands = {
 			});
 			dispatcher.on('end', () => {
 				collector.stop();
-				play(queue[msg.guild.id].songs.shift());
+				oynat(queue[msg.guild.id].songs.shift());
 			});
 			dispatcher.on('error', (err) => {
 				return msg.channel.sendMessage('Hata: ' + err).then(() => {
@@ -59,14 +59,14 @@ const commands = {
 			});
 		})(queue[msg.guild.id].songs.shift());
 	},
-	'join': (msg) => {
+	'çağır': (msg) => {
 		return new Promise((resolve, reject) => {
 			const voiceChannel = msg.member.voiceChannel;
 			if (!voiceChannel || voiceChannel.type !== 'voice') return msg.reply('Bir kanala katıl.');
 			voiceChannel.join().then(connection => resolve(connection)).catch(err => reject(err));
 		});
 	},
-	'leave': (msg) => {
+	'at': (msg) => {
 					const voiceChannel = msg.member.voiceChannel;
 
 			voiceChannel.leave()
